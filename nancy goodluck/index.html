@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth; /* Ensure smooth scrolling */
+        }
+        .hero {
+            background-image: url('img/eko-slide1.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+            padding: 100px 0;
+            text-align: center;
+            position: relative; /* Ensure relative positioning for overlay */
+            opacity: 0; /* Start hidden */
+            transform: translateY(100px); /* Start below the viewport */
+            transition: opacity 1s ease-out, transform 1s ease-out; /* Smooth transition */
+        }
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
+        }
+        .hero .container {
+            position: relative; /* Ensure content inside hero is stacked above overlay */
+            z-index: 1; /* Ensure content is above the overlay */
+        }
+        .hero h2 {
+            font-size: 50px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow for better readability */
+        }
+        .hero p {
+            font-size: 18px;
+            color: white; /* Ensure text color is readable */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Add text shadow */
+        }
+        .hero button {
+            background-color: #ffffff;
+            color: #0a0a0a;
+            padding: 1em 2em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Add text shadow */
+        }
+        .hero button:hover {
+            background-color: rgb(22, 19, 53);
+        }
+        .hero.revealed {
+            opacity: 1; /* Fully visible */
+            transform: translateY(0); /* Original position */
+        }
+        .contact-form {
+            margin-top: 2em;
+        }
+        .contact-form input, .contact-form textarea {
+            margin-bottom: 1em;
+        }
+        /* Spinner Styles */
+        .spinner {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .spinner-border {
+            width: 3rem;
+            height: 3rem;
+        }
+        /* Image Spacing */
+        .room-image {
+            padding: 10px; /* Add padding around images */
+        }
+    </style>
+</head>
+<body>
+    <div class="spinner">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <header>
+                    <h1 style="text-align: center">Grand Oasis Hotel</h1>
+                </header>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-12">
+                <section class="hero" id="hero">
+                    <div class="container">
+                        <h2>Welcome To Our Hotel</h2>
+                        <p>Book Now And Get 10% Off Your First Stay </p>
+                        <button class="btn btn-primary" onclick="scrollToSection()">Book Now</button>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <section id="amenities">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 style="text-align: center;margin-top: 1em;">Our Amenities</h2>
+                    <ul>
+                        <li>Free Wifi</li>
+                        <li>Restaurant And Bar</li>
+                        <li>Conducive Environment</li>
+                        <li>Fitness Center</li>
+                        <li>Room service</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 style="text-align: center;">Our Rooms</h2>
+                    <div class="row">
+                        <div class="col-md-3 room-image">
+                            <a href="img/eko-gardens.jpg" data-lightbox="rooms"><img src="img/eko-gardens.jpg" alt="" class="img-fluid"></a>
+                        </div>
+                        <div class="col-md-3 room-image">
+                            <a href="img/eko-hotel.jpg" data-lightbox="rooms"><img src="img/eko-hotel.jpg" alt="" class="img-fluid"></a>
+                        </div>
+                        <div class="col-md-3 room-image">
+                            <a href="img/eko-signature.webp" data-lightbox="rooms"><img src="img/eko-signature.webp" alt="" class="img-fluid"></a>
+                        </div>
+                        <div class="col-md-3 room-image">
+                            <a href="img/eko-suites.webp" data-lightbox="rooms"><img src="img/eko-suites.webp" alt="" class="img-fluid"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 style="text-align: center;">Get In Touch</h2>
+                    <p>Phone: <a href="tel:09037765197">09037765197</a>, <a href="tel:07055519706">07055519706</a></p>
+                    <p>Email: <a href="mailto:vanessaalabi5@gmail.com">vanessaalabi5@gmail.com</a></p>
+                    <form class="contact-form">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Your Name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="email" placeholder="Your Email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" rows="3" placeholder="Your Message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <script>
+        function scrollToSection() {
+            document.getElementById('amenities').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const heroSection = document.getElementById('hero');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        heroSection.classList.add('revealed');
+                        observer.disconnect(); // Stop observing after reveal
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% of the hero section is visible
+            });
+            observer.observe(heroSection);
+        });
+
+        window.addEventListener('load', function() {
+            const spinner = document.querySelector('.spinner');
+            spinner.style.display = 'none'; // Hide the spinner once the page is fully loaded
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img');
+            let imagesLoaded = 0;
+
+            images.forEach(image => {
+                if (image.complete) {
+                    incrementCounter();
+                } else {
+                    image.addEventListener('load', incrementCounter);
+                    image.addEventListener('error', incrementCounter);
+                }
+            });
+
+            function incrementCounter() {
+                imagesLoaded++;
+                if (imagesLoaded === images.length) {
+                    const spinner = document.querySelector('.spinner');
+                    spinner.style.display = 'none'; // Hide the spinner once all images are loaded
+                }
+            }
+        });
+    </script>
+</body>
+</html>
